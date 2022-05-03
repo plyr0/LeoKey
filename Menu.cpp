@@ -35,6 +35,7 @@ void Menu::mainMenu()
 
 void Menu::availSpecialKeys()
 {
+	Serial.print("a-z A-Z 0-9 !-) ~`-_=+[{]}\\|;:'\",<.>/? ");
 	for (int i = 0; i < SPECIAL_CHARS_NO; i++)
 	{
 		Serial.print(specialKeyNames[i]);
