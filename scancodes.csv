@@ -1,4 +1,3 @@
-https://deskthority.net/wiki/Scancode,https://forum.arduino.cc/t/keyboard-write-with-number-pad-keys-from-leonardo/175304,
 Code,Dec,key name
 0x28,40,enter
 0x29,41,esc
@@ -49,21 +48,6 @@ Code,Dec,key name
 0x62,98,g0
 0x63,99,gdot
 0x65,101,app
-0x66,102,power
-0x74,116,execute
-0x75,117,help
-0x76,118,menu
-0x77,119,select
-0x78,120,stop
-0x79,121,again
-0x7A,122,undo
-0x7B,123,cut
-0x7C,124,copy
-0x7D,125,paste
-0x7E,126,find
-0x7F,127,mute
-0x80,128,volup
-0x81,129,voldn
 0xE0,224,lctrl
 0xE1,225,lshift
 0xE2,226,lalt
