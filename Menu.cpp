@@ -78,7 +78,7 @@ void Menu::processInput(String input)
     {
       if(strcmp(specialKeyNames[i], strinput) == 0)
       {
-        keys[state] = specialKeyCodes[i];
+        keys[state] = specialKeyCodes[i] + PRINTABLE_OFFSET;
         state = DEFAULT_STATE;
         mainMenu();
         return;

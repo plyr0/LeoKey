@@ -121,7 +121,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties config.Debug.customdebug_SparkFun_promicro_16MHzatmega32U4_debugger_type="universal" custom_SparkFun_promicro_16MHzatmega32U4_vm.programmer_name="avrispmkii" custom_SparkFun_promicro_16MHzatmega32U4_vm.upload.useprogrammer="1" />
+      <UserProperties arduino.upload.port="COM10" config.Debug.customdebug_SparkFun_promicro_16MHzatmega32U4_debugger_type="universal" custom_SparkFun_promicro_16MHzatmega32U4_vm.programmer_name="" custom_SparkFun_promicro_16MHzatmega32U4_vm.upload.useprogrammer="0" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

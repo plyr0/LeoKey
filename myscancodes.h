@@ -145,8 +145,8 @@ char specialKeyCodes[SPECIAL_CHARS_NO] =
     0x7D,
     0x7E,
     0x7F,
-    0x80,
-    0x81,
+    0x89,
+    0x8A,
     /*
      * Keyboard.h library recognizes >=136 codes as not printables.
      * Above ones are below it so i need to add 136 to them manually, somewhere later.
