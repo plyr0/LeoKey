@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "myscancodes.h"
 #include "LeoKey.h"
+#include "Keyboard.h"
 
 Menu::Menu(unsigned char* keys)
 {
@@ -14,26 +15,20 @@ void Menu::mainMenu()
 	Serial.println(greet);
 	for (int i = 0; i < PIN_NO; i++)
 	{
-		if (keys[i] >= '!' && keys[i] <= '~') 
+		if (keys[i] >= '!' && keys[i] <= '~')
 		{
 			keyName = (String)((char)keys[i]);
 		}
 		else for (int j = 0; j < SPECIAL_CHARS_NO; j++)
 		{
-			unsigned char specialKeyCode = specialKeyCodes[j] < FIRST_MOD_CODE
-				? specialKeyCodes[j] + PRINTABLE_OFFSET
-				: specialKeyCodes[j];
-
-			if (specialKeyCode == keys[i])
+			if (specialKeyCodes[j] == keys[i])
 			{
 				keyName = specialKeyNames[j];
 				break;
 			}
 		}
 		Serial.print(keyName);
-		Serial.print('(');
-		Serial.print(keys[i], HEX);
-		Serial.print(")\t");
+		Serial.print("\t");
 	}
 	Serial.println();
 }
@@ -59,14 +54,15 @@ void Menu::processInput(String input)
 		if (input.length() == 1)
 		{
 			char c = input.charAt(0);
-			if (c >= '0' && c <= '7')
+			if (c >= '0' && c <= '6')
 			{
 				state = c - '0';
 
-				if (state == 7)
+				if (state == DEFAULT_STATE)
 				{
 					availSpecialKeys();
-					state = 6;
+					state = DEFAULT_STATE;
+					mainMenu();
 					return;
 				}
 
@@ -85,28 +81,26 @@ void Menu::processInput(String input)
 	if (input.length() == 1)
 	{
 		keys[state] = input.charAt(0);
-		state = DEFAULT_STATE;
-		mainMenu();
-		return;
 	}
 	else
 	{
 		input.toLowerCase();
 		const char* strinput = input.c_str();
+		bool foundFlag = false;
 		for (int i = 0; i < SPECIAL_CHARS_NO; i++)
 		{
 			if (strcmp(specialKeyNames[i], strinput) == 0)
 			{
-				keys[state] = specialKeyCodes[i] < FIRST_MOD_CODE
-					? specialKeyCodes[i] + PRINTABLE_OFFSET
-					: specialKeyCodes[i];
-				state = DEFAULT_STATE;
-				mainMenu();
-				return;
+				keys[state] = specialKeyCodes[i];
+				foundFlag = true;
 			}
 		}
-		Serial.println("Unknown key!");
+		if (!foundFlag)
+		{
+			Serial.println("Unknown key!");
+		}
 	}
+	Keyboard.releaseAll();
 	state = DEFAULT_STATE;
 	mainMenu();
 }

@@ -7,15 +7,15 @@ unsigned char keys[PIN_NO] = { KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_LEFT_ARROW, KE
 String input;
 Menu menu(keys);
 
-inline char readInput()
+inline bool readInput()
 {
-	char n;
-	if ((n = Serial.available()) > 0)
+	if (Serial.available() > 0)
 	{
 		input = Serial.readStringUntil('\n');
 		input.trim();
+		return true;
 	}
-	return n;
+	return false;
 }
 
 inline void readJoy()
@@ -30,13 +30,13 @@ inline void writeKeyboard()
 {
 	for (int i = 0; i < PIN_NO; i++)
 	{
-		if (pins[i])
+		if (pins[i] == LOW)
 		{
-			Keyboard.release(keys[i]);
+			Keyboard.press(keys[i]);
 		}
 		else
 		{
-			Keyboard.press(keys[i]);
+			Keyboard.release(keys[i]);
 		}
 	}
 }
